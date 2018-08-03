@@ -1,0 +1,8 @@
+{
+  "name": "mailing_new",
+  "app_id": "",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}
