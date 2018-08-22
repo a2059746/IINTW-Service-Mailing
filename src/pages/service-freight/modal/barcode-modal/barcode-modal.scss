@@ -1,0 +1,20 @@
+page-barcode-modal {
+    p {
+        margin: 0;
+    }
+    .bar-cont {
+        padding: 5px;
+        width: 100%;
+        .barcode {
+            margin: .3rem auto;
+            svg {
+                /* width: 100%;*/ 
+                max-width: 100%;
+            }
+        }
+    }
+    .waiting-msg {
+      text-align: center;
+      font-size: 25px;
+    }
+}

@@ -1,0 +1,12 @@
+page-login {
+  .tips {
+    overflow: auto;
+    padding: 1rem;
+    font-size: 20px;
+    white-space: pre-wrap;
+  }
+  .err-msg {
+    margin-top: 0;
+    color: red;
+  }
+}

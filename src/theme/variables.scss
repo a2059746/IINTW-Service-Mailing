@@ -86,3 +86,26 @@ $colors: (
 
 @import "roboto";
 @import "noto-sans";
+
+@import "./scss/bootstrap";
+
+// p, label, select, input, textarea, .btn {
+//   font-size: 1.65rem !important;
+// }
+
+// .title-1 {
+//   font-size: 2rem;
+//   padding-bottom: 0.7rem;
+// }
+
+// .custom-alert {
+//   font-size: 10rem;
+// }
+
+// .active-input-style {
+//   background-color: #ffffff !important;
+// }
+
+// .custom-select {
+//   height: calc(3.5rem + 2px);
+// }

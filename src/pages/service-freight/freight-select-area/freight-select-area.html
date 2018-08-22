@@ -1,0 +1,88 @@
+<!--
+  Generated template for the FreightSelectAreaPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>選擇運送國家</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="cancelProcdure()">
+        <ion-icon name="exit"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+  <div class="input-group py-3 px-4" style="background-color: #FFFFFF;">
+    <!-- <div class="input-group-prepend">
+      <label id="selectArea" class="input-group-text" for="inputGroupSelect01">選擇國家</label>
+    </div> -->
+    <!-- <select class="custom-select text-primary" [(ngModel)]="country_value" (ngModelChange)="resetarea()">
+      <option value="" selected>Choose...</option>
+      <option
+        [attr.data-thumbnail]="'assets/imgs/flags/Taiwan.png'"
+        [value]="country.c_name"
+        *ngFor="let country of data.service_area; let i = index;">
+        <img [src]="'assets/imgs/flags/Taiwan.png'"  width="15px" height="15px" alt="">
+        {{ country.c_name }}</option>
+    </select> -->
+    <!-- <button (click)="selectCountry()">test</button> -->
+
+    <div class="col-3 selecetTitle">
+      <span>選擇國家</span>
+    </div>
+    <div id="selector" [ngClass]="{'col-8': true, 'selectArea': true, 'select-focus': isCtrl.selectCountry}" (click)="selectCountry()">
+      <img [src]="'assets/imgs/flags/' + country_value + '.png'" *ngIf="(country_value != 'Choose...')">
+      <span class="text-primary">{{ country_value }}</span>
+    </div>
+    <div [ngClass]="{'col-1': true, 'selectIcon': true, 'select-focus': isCtrl.selectCountry}" (click)="selectCountry()">
+      <span>▾</span>
+    </div>
+
+  </div>
+
+</ion-header>
+
+
+<ion-content padding>
+  <!-- Toast -->
+  <div [ngClass]="{'snackbar': true, 'show': isCtrl.showToast}">
+    <label class="custom-alert">請選擇國家與區域</label>
+  </div>
+
+  <ng-container *ngIf="isCtrl.loadingReady">
+    <div
+      *ngFor="let country of data.service_area; let ci = index;"
+      [ngStyle]="{'display': country.c_name == country_value ? 'initial' : 'none'}">
+        <button
+          *ngFor="let area of country.c_area; let ai = index;"
+          [id]="'btn' + ci + ai"
+          class="w-100 mb-2"
+          (click)="getArea(ci, ai, area.foreign_name)">
+          <ion-card>
+            <div class="container px-3 my-3">
+              <div class="col-12 text-center mt-2 mb-3">
+                <h4>{{ area.foreign_name }}</h4>
+              </div>
+              <div class="col-10 pl-0 pr-1 mx-auto text-center align-self-center">
+                <img class="mx-auto" [src]="'assets/imgs/' + area.img + '.png'" alt="">
+              </div>
+            </div>
+          </ion-card>
+        </button>
+    </div>
+  </ng-container>
+
+</ion-content>
+
+
+<ion-footer>
+  <ion-toolbar>
+    <button ion-button block color="primary" icon-end (click)="toNextPage()">
+      下一步
+      <ion-icon name="arrow-forward"></ion-icon>
+    </button>
+  </ion-toolbar>
+</ion-footer>

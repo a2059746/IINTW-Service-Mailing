@@ -1,0 +1,132 @@
+page-freight-vendorgifts {
+  .row {
+    padding: 1rem;
+  }
+
+  .custom-style {
+    /*isplay: -webkit-box; */
+    /* display: -webkit-flex; */
+    display: -ms-flexbox;
+    /* display: flex; */
+    /* -webkit-box-align: center; */
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: 0.375rem 0.25rem 0.375rem 0rem;
+    margin-bottom: 0;
+    font-size: 1.4rem;
+    line-height: 1.5;
+    text-align: center;
+    white-space: nowrap;
+    /* background-color: #e9ecef; */
+    /* border: 1px solid #ced4da; */
+    /* border-radius: 0.25rem; */
+    color: #222;
+  }
+
+  .custom-text-center {
+    /*isplay: -webkit-box; */
+    /* display: -webkit-flex; */
+    display: -ms-flexbox;
+    /* display: flex; */
+    /* -webkit-box-align: center; */
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: 0.375rem 0.75rem;
+    margin-bottom: 0;
+    font-size: 1.4rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    text-align: center;
+    white-space: nowrap;
+    /* background-color: #e9ecef; */
+    /* border: 1px solid #ced4da; */
+    /* border-radius: 0.25rem; */
+  }
+
+  img {
+    max-height: 11rem;
+    width: auto;
+	  height: auto;
+  }
+
+  .card-md {
+    width: 100%;
+    margin: 0px 0px 10px 0;
+  }
+
+  .custom-title {
+    //color: #757575;
+    color: #000000;
+    text-decoration: underline;
+    text-decoration-color: #007bbf;
+    text-underline-position: under;
+    font-weight: normal;
+    font-size: 2.25rem;
+  }
+
+  ion-toolbar {
+
+    .grid {
+      padding: 0;
+
+      .row {
+        padding: 0 1rem;
+
+        .col {
+          padding-top: 0;
+          padding-bottom: 0;
+        }
+      }
+    }
+  }
+
+  // Toast style
+  .snackbar {
+    visibility: hidden;
+    min-width: 250px;
+    margin-left: -125px;
+    background-color: #dc3545;
+    color: #fff;
+    text-align: center;
+    border-radius: 2px;
+    padding: 10px;
+    position: fixed;
+    z-index: 1000;
+    left: 50%;
+    top: 40%;
+    font-size: 1.25rem;
+  }
+
+  .snackbar.show {
+    visibility: visible;
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2s;
+    animation: fadein 0.5s, fadeout 0.5s 2s;
+  }
+
+  @-webkit-keyframes fadein {
+    from {top: 30%; opacity: 0;}
+    to {top: 40%; opacity: 1;}
+  }
+
+  @keyframes fadein {
+    from {top: 30%; opacity: 0;}
+    to {top: 40%; opacity: 1;}
+  }
+
+  @-webkit-keyframes fadeout {
+    from {top: 40%; opacity: 1;}
+    to {top: 30%; opacity: 0;}
+  }
+
+  @keyframes fadeout {
+    from {top: 40%; opacity: 1;}
+    to {top: 30%; opacity: 0;}
+  }
+
+  .btn {
+    padding: 0.375rem 1.2rem;
+  }
+}

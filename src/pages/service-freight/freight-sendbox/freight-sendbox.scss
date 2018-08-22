@@ -1,0 +1,60 @@
+page-freight-sendbox {
+  .content {
+    background-color: #ffffff;
+  }
+
+  p {
+    margin-bottom: 0px;
+  }
+
+  .list-group {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+  }
+
+  .center-img {
+    font-size:0;
+  }
+
+  .center-img:before {
+    content: '';
+    display: inline-block;
+    vertical-align: middle;
+    width: 0;
+    height: 100%;
+  }
+
+  .center-img img {
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    vertical-align: middle;
+    height: 6rem;
+    width: 6rem;
+  }
+
+  .center-btn:before {
+    content: '';
+    display: inline-block;
+    vertical-align: middle;
+    width: 0;
+    height: 100%;
+  }
+
+  .center-btn button {
+    display: inline-block;
+    vertical-align: middle;/* 保证文字垂直居中 */
+  }
+
+}
+
+.alert-style {
+  .alert-button-group {
+    padding: 8px;
+  }
+}
+
+.alert-button-danger {
+  .button-inner {
+    color: red;
+  }
+}

@@ -1,0 +1,79 @@
+page-freight-vendorlist {
+
+  .row {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+
+  img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    height: 6rem;
+    width: 6rem;
+  }
+
+  #vendorName {
+    padding-top: 0.4rem;
+  }
+
+  .content {
+    background-color: #ffffff;
+  }
+}
+
+ion-header{
+  .toolbar-background-md {
+    background: #488aff;
+  }
+
+  .toolbar-title {
+    color: white;
+  }
+
+  .bar-button-default-md {
+    color: #ffffff;
+  }
+}
+
+ion-content {
+  .button-md, .btn-content {
+    background-color: #03DAC5;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  }
+
+  .btn {
+    border-radius: 0.5rem;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  }
+}
+
+
+.content-md {
+  color: #000;
+  background-color: #f1f1f1;
+}
+
+
+.tabs-md .tabbar {
+  background: #488aff;
+
+  a {
+    text-decoration: none;
+  }
+}
+
+
+.tabs-md .tab-button[aria-selected=true] {
+  color: #ffffff;
+  padding: 0;
+  .tab-button-icon {
+    color: #FFFFFF;
+  }
+
+}
+
+.card-md {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+

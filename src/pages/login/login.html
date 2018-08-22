@@ -1,0 +1,56 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{ 'LOGIN_TITLE' | translate }}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content class="bg-white">
+
+
+    <ion-list>
+      <form [formGroup]="credentialsForm">
+        <ion-item>
+          <ion-label stacked>{{ 'PHONE_NUMBER' | translate }}</ion-label>
+
+        <ion-input placeholder="Ex. 0912345678" type="number" name="phone" [disabled]="isMember" formControlName="phone"></ion-input>
+        </ion-item>
+          <!--
+            [(ngModel)]="account.phone"
+            mask="999-999999999"
+            <ion-input type="email" [(ngModel)]="account.email" name="email"></ion-input> -->
+        <ion-item *ngIf="!credentialsForm.controls.phone?.valid  && (credentialsForm.controls.phone?.dirty)">
+          <p class="err-msg" >{{ 'PLS_ENTER_VALID_PHONENUM' | translate }}.</p>
+
+        </ion-item>
+
+      </form>
+      <!--
+      Want to use a Username instead of an Email? Here you go:
+
+      <ion-item>
+        <ion-label floating>{{ 'USERNAME' | translate }}</ion-label>
+        <ion-input type="text" [(ngModel)]="account.username" name="username"></ion-input>
+      </ion-item>
+      -->
+
+      <p *ngIf="account.invalid" class="invalid-message">
+        * {{ 'PLS_CORRECT_PASSWORD' | translate }}
+      </p>
+
+
+      <div *ngIf="!isMember" padding>
+        <button [disabled]="!credentialsForm.valid" (click)="login()" ion-button color="primary" block>{{ 'AUTHENTICATING' | translate }}</button>
+      </div>
+
+<pre class="tips">
+{{tips}}
+</pre>
+
+    </ion-list>
+    <!--
+    <form [formGroup]="form">
+  </form> -->
+</ion-content>

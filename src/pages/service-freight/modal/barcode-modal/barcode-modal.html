@@ -1,0 +1,74 @@
+<ion-header>
+
+    <ion-navbar>
+      <ion-buttons start>
+        <button ion-button (click)="dismiss()">Back</button>
+      </ion-buttons>
+      <ion-title>超商繳費條碼</ion-title>
+    </ion-navbar>
+
+  </ion-header>
+
+
+<ion-content class="bg-white">
+  <!-- <p>{{ '訂單編號' | translate }}: {{orderInfo.TID}}</p> -->
+  <ng-container *ngIf="isValidDayOut">
+      <p class="waiting-msg">{{ '已經超過繳費期限，請重新申請或與我們聯繫，電話：' | translate }}{{sp_phone}}</p>
+  </ng-container>
+  <ng-container *ngIf="error">
+      <p class="waiting-msg">{{ 'Rmittance vendor do not have payment Code, pls contact us' | translate }}</p>
+  </ng-container>
+  <ng-container *ngIf="!needToPay && !error && noAudited">
+    <p class="waiting-msg">{{ 'WAITING_AUDIT_MSG' | translate }}</p>
+  </ng-container>
+  <ng-container *ngIf="needToPay">
+
+
+    <ng-container *ngIf="!cannotScanTip && needToPay">
+      <div class="bar-cont mt-3" text-center>
+
+          <img src="assets/imgs/stores.jpg" class="mb-3" alt="stores">
+
+          <ngx-barcode class="barcode" [bc-format]="'CODE39'" [bc-value]="CODE[0]" [bc-display-value]="true" bc-height="50" [bc-width]="1" [bc-margin]="1"></ngx-barcode>
+          <ngx-barcode class="barcode" [bc-format]="'CODE39'" [bc-value]="CODE[1]" [bc-display-value]="true" bc-height="50" [bc-width]="1" [bc-margin]="1"></ngx-barcode>
+          <ngx-barcode class="barcode" [bc-format]="'CODE39'" [bc-value]="CODE[2]" [bc-display-value]="true" bc-height="50" [bc-width]="1" [bc-margin]="1" ></ngx-barcode>
+          <p style="text-align: center; color: red;">{{'繳款有效日期：'|translate}}{{validdate | date: 'yyyy/MM/dd'}}</p>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="cannotScanTip">
+
+      <p>{{ 'BARCODE_NOTWORK_TIPS_1' | translate }}</p>
+      <p>{{ 'BARCODE_NOTWORK_TIPS_2' | translate }} {{sp_phone}}</p>
+      <p>{{ 'BARCODE_NOTWORK_TIPS_3' | translate }}</p>
+    </ng-container>
+
+    <!--
+    <button *ngIf="!cannotScanTip" (click)="toggleTip()" color="light" ion-button block icon-right>
+        {{ 'BARCODE_NOTWORK' | translate }}
+      <ion-icon></ion-icon>
+    </button>
+    <button *ngIf="cannotScanTip" (click)="toggleTip()" color="light" ion-button block icon-right>
+        {{ 'OK_BUTTON' | translate }}
+      <ion-icon></ion-icon>
+    </button>
+    -->
+  </ng-container>
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <button (click)="uploadR()" color="default" ion-button block icon-right *ngIf="(state != '88')">
+        <!-- {{ 'TRANSMIT_UPLOAD_RECEIPT' | translate }} -->
+        上傳繳費收據
+      <ion-icon></ion-icon>
+    </button>
+
+    <button (click)="uploadR()" color="default" ion-button block icon-right *ngIf="(state == '88')">
+        <!-- {{ 'TRANSMIT_UPLOAD_RECEIPT' | translate }} -->
+        重新上傳繳費收據
+      <ion-icon></ion-icon>
+    </button>
+
+  </ion-toolbar>
+</ion-footer>

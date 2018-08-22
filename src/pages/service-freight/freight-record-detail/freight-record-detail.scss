@@ -1,0 +1,22 @@
+page-freight-record-detail {
+  ion-content{
+    .scroll-content{
+      margin-bottom: 56px;
+    }
+  }
+  ion-toolbar {
+
+    .grid {
+      padding: 0;
+
+      .row {
+        padding: 0 1rem;
+
+        .col {
+          padding-top: 0;
+          padding-bottom: 0;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,204 @@
+<!--
+  Generated template for the FreightOrderCheckPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>訂單確認</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="cancelProcdure()">
+        <ion-icon name="exit"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <div class="btn-group mb-2" role="group" aria-label="First group" >
+    <button
+      #boxBtn
+      type="button"
+      [ngClass]="{'btn': true, 'btn-light': !first, 'btn-primary': first, 'bouton-image': true, 'monBouton': true, 'px-2': true}"
+      *ngFor="let order of orderInfo; let i = index; let first = first;"
+      (click)="clickBox(i)">{{ i + 1 }}</button>
+  </div>
+
+
+  <div
+    class="mb-5"
+    *ngFor="let order of orderInfo; let i = index; let first = first;"
+    #boxes
+    [hidden]="(first)? false : true">
+
+    <!-- <div class="card pb-0 pt-3">
+        <div class="card-body text-center">
+          <p class="custom-title mb-2">{{ order.FBKey }}</p>
+        </div>
+    </div> -->
+
+    <ion-card>
+      <div class="container px-3 my-3">
+        <div class="row">
+          <div class="col-5 pl-0 pr-1 mx-auto text-center align-self-center">
+            <img class="mx-auto" [src]="order.FBPics || ('assets/imgs/archive.png')" alt="">
+          </div>
+
+          <div id="boxInfo" class="col-7 mb-2">
+            <div class="row pr-0 pl-1 py-0 mb-2">
+              <div class="col-12 p-0"><strong>箱子編號</strong></div>
+              <div class="col-12 p-0">
+                <input type="text" class="mb-1 form-control" style="display: block;" [value]="order.FBKey" disabled>
+              </div>
+              <div class="col-12 p-0">
+                <input type="text" class="form-control" style="display: block;"  [value]="order.FBSize" disabled>
+              </div>
+            </div>
+
+            <div class="row pr-0 pl-1 py-0 mb-3">
+              <div class="col-5 p-0" style="padding: 0.375rem 0rem !important;"><strong>適用國家</strong></div>
+              <div class="col-7 p-0">
+                <img *ngFor="let country of order.BindCountry" [src]="'assets/imgs/flags/' + country + '.png'" alt="">
+              </div>
+            </div>
+
+            <div class="row pr-0 pl-1 py-0 mb-2">
+              <div
+                class="col-5 p-0"
+                style="padding: 0.375rem 0rem !important;"><strong>寄送地區</strong>
+              </div>
+              <div class="col-7 p-0">
+                <input type="text" class="form-control" [value]="userCity" disabled>
+              </div>
+            </div>
+
+            <div class="row pr-0 pl-1 py-0 mb-2">
+              <div class="col-12 p-0"><strong>總訂金/總尾款</strong></div>
+              <div class="col-6 p-0">
+                <input type="text" class="form-control" [value]="(order.FBDeposit * order.boxChoosenAmount)" disabled>
+              </div>
+              <div class="col-6 p-0">
+                <input type="text" class="form-control" [value]="(order.FBBlance * order.boxChoosenAmount)" disabled>
+              </div>
+            </div>
+
+            <div class="row pr-0 pl-1 py-0">
+              <div
+                class="col-5 p-0"
+                style="padding: 0.375rem 0rem !important;"><strong>購買數量</strong>
+              </div>
+              <div class="col-7 p-0">
+                <input type="text" class="mb-3 form-control" [value]="order.boxChoosenAmount" disabled>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </ion-card>
+
+
+    <ion-card *ngFor="let gift of gifts(i);">
+
+        <div class="container px-3 my-3">
+            <div class="row">
+              <div class="col-5 pl-0 pr-1 mx-auto text-center align-self-center">
+                <img class="mx-auto" [src]=" gift.info.FGPics || ('assets/imgs/gift.png')" alt="">
+              </div>
+
+              <div class="col-7 px-0 align-self-center">
+                  <table class="w-100">
+                      <tr>
+                        <th style="width: 40%; text-align: right;">
+                          <div class="mr-2">贈品名稱</div>
+                        </th>
+                        <td style="width: 55%;">
+                          {{ gift.info.FGName }}
+                        </td>
+                      </tr>
+                      <tr>
+                        <th style="width: 40%; text-align: right;">
+                          <div class="mr-2">加購總額</div>
+                        </th>
+                        <td style="width: 55%;">
+                          {{ gift.info.FGPrice * gift.amount }}
+                        </td>
+                      </tr>
+                      <tr>
+                        <th style="width: 40%; text-align: right;">
+                          <div class="mr-2">加購數量</div>
+                        </th>
+                        <td style="width: 55%;">
+                          {{ gift.amount }}
+                        </td>
+                      </tr>
+                    </table>
+              </div>
+
+            </div>
+        </div>
+      </ion-card>
+
+
+    <!-- <ion-card *ngFor="let gift of gifts(i);">
+      <ion-grid>
+        <ion-row>
+          <ion-col col-5>
+            <img [src]=" gift.info.FGPics || ('assets/imgs/gift.png')" alt="">
+          </ion-col>
+          <ion-col col-7>
+            <table class="w-100"> -->
+              <!-- <tr>
+                <th>箱子編號</th>
+                <td>{{ order.FBKey }}</td>
+              </tr> -->
+              <!-- <tr>
+                <th style="width: 40%">贈品名稱</th>
+                <td>{{ gift.info.FGName }}</td>
+              </tr>
+              <tr>
+                <th style="width: 40%">加購總價</th>
+                <td>{{ gift.info.FGPrice * gift.amount }}</td>
+              </tr>
+              <tr>
+                <th style="width: 40%">數量</th>
+                <td>{{ gift.amount }}</td>
+              </tr>
+            </table>
+
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card> -->
+
+  </div>
+</ion-content>
+
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-6>
+          <button ion-button block color="danger" icon-end (click)="reviseOrder()">
+            修改訂單
+            <ion-icon name="refresh"></ion-icon>
+          </button>
+        </ion-col>
+        <ion-col col-6>
+          <button ion-button block color="primary" icon-end (click)="submit()">
+            訂單確認
+            <ion-icon name="checkbox"></ion-icon>
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-footer>
+

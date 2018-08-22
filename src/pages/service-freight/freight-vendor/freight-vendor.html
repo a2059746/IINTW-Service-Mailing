@@ -1,0 +1,68 @@
+<!--
+  Generated template for the FreightVendorPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+</ion-header>
+
+
+<ion-content fullscreen="true">
+
+    <div
+      id="block-1"
+      class="container"
+      style="border: 0;"
+      [style.background-image] = "'url(' + vendor['pimg-zh-cmn-Hant'] + ')'">
+
+      <button id="back-btn" ion-button color="danger" clear icon-only large (click)="backBtn()">
+        <ion-icon name='arrow-back'></ion-icon>
+      </button>
+
+    </div>
+
+    <div class="paddingBlock">
+      <div class="py-3 container">
+        <div class="row">
+          <div class="col-3 pl-0">
+            <img [src]=" vendor['Name'] == '郵寄廠商1' ? './assets/icon/IINTW-logo.jpg' : './assets/icon/default-logo.png' ">
+          </div>
+          <div class="col-9 pl-0">
+            <h3 class="mt-0 mb-3" style="padding-top: 0.4rem;">{{ vendor['Name'] }}</h3>
+            <p class="m-0">{{ vendor['Name'] == '郵寄廠商1' ? '亞洲國際貨運公司' : 'Subtitle' }}</p>
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col pl-0"></div>
+          <div class="col pl-0"></div>
+          <div class="col pl-0">
+            <button type="button" class="btn btn-primary btn-lg btn-block" (click)="goSelectAreaPage()">購買箱子</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="paddingBlock">
+      <div class="py-3 container">
+        <div class="row">
+          <div class="text-center col-12">
+            <h3 class="my-0">廠商介紹</h3>
+          </div>
+          <div class="text-center col-12 mt-3">
+              <p class="mb-0">{{ vendor['Desc-zh-cmn-Hant'] }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="paddingBlock">
+      <div class="py-3 container">
+        <div class="row">
+          <div class="text-center col-12">
+            <h3 class="my-0">其他資訊 - 1</h3>
+          </div>
+        </div>
+      </div>
+    </div> -->
+
+</ion-content>

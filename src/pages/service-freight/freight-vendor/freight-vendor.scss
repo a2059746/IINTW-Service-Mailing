@@ -1,0 +1,61 @@
+page-freight-vendor {
+
+  .content {
+    background-color: #ffffff;
+  }
+
+  #block-1 {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 17.5rem;
+    //background-color: #696969;
+    //background-image: url('https://thumbs.dreamstime.com/b/delivery-van-mobile-phone-map-city-background-service-app-flat-style-vector-illustration-99586540.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    height: 6rem;
+    width: 6rem;
+  }
+
+  .container {
+    border-bottom: 1.5px solid rgba(0, 0, 0, 0.125);
+  }
+
+  .paddingBlock:last-child .container {
+    border-bottom: 0;
+  }
+
+  pre {
+    word-wrap:break-word;
+  }
+
+  .paddingBlock {
+    display: block;
+    padding-right: 1.75rem;
+    padding-left: 1.75rem;
+  }
+
+  #back-btn {
+    position: relative;
+    top: 1.2rem;
+    left: -1.2rem;
+    background-color: transparent;
+    border: 0px;
+    box-shadow: 0 0 0 0;
+    color: #ffffff;
+    text-shadow: -0.15px 0 rgb(180, 180, 180), 0 0.15px rgb(180, 180, 180), 0.15px 0 rgb(180, 180, 180), 0 -0.15px rgb(180, 180, 180);
+  }
+
+  .pictureTitle {
+    text-decoration: underline;
+    text-underline-position: under;
+    text-decoration-color: #007bff;
+  }
+}

@@ -1,0 +1,269 @@
+<!--
+  Generated template for the FreightOdererInfoCheckPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>購買者資料確認</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="cancelProcdure()">
+        <ion-icon name="exit"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <!-- Toast -->
+  <div [ngClass]="{'snackbar': true, 'show': isCtrl.isAllDone}">
+    <p class="custom-alert" *ngIf='!twAddress && !this.isCtrl.choosePhoto'>請填寫箱子收件地址</p>
+    <!-- <p class="custom-alert" *ngIf="!foreignAddress">請填寫國外收件地址</p>
+    <p class="custom-alert" *ngIf="!foreignPhone">請填寫國外連絡電話</p> -->
+    <p class="custom-alert" *ngIf="!receivingTime">請選擇指定收件時間</p>
+    <p class="custom-alert" *ngIf="!payMethod">請選擇付款方式</p>
+  </div>
+
+  <div id="content" class="container py-5 px-5">
+
+    <div class="row">
+      <div class="col-4 px-0">
+        <div class="mb-3 input-group">
+          <div class="input-group-prepend">
+            <label class="custom-text-center">收件者姓名</label>
+          </div>
+        </div>
+      </div>
+      <div class="col-8 px-0">
+        <input type="text" class="form-control" [value]="authInfo.Name" disabled>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-4 px-0">
+        <div class="mb-3 input-group">
+          <div class="input-group-prepend">
+            <label class="custom-text-center">聯絡地址</label>
+          </div>
+        </div>
+      </div>
+      <div class="col-8 px-0">
+        <input type="text" class="form-control" [(ngModel)]="authInfo.Address_Cty + authInfo.Address" disabled>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-4 px-0">
+        <div class="mb-3 input-group">
+          <div class="input-group-prepend">
+            <label class="custom-text-center">連絡電話</label>
+          </div>
+        </div>
+      </div>
+      <div class="col-8 px-0">
+        <input type="text" class="form-control" [value]="authInfo.Phone" disabled>
+      </div>
+    </div>
+
+    <div class="mb-1 row">
+      <div class="col-12 px-0">
+        <div class="input-group justify-content-between">
+          <div class="input-group-prepend">
+            <label class="custom-text-center">箱子收件地址</label>
+            <!-- <button id="ex1" [ngClass]="{'btn': true, 'ex-mark': true, 'text-primary':!isCtrl.exText, 'text-danger': isCtrl.exText1}" type="submit" (click)="exClick1()">[ ! ]</button> -->
+          </div>
+          <button class="btn btn-primary" type="submit" (click)="editAddress()" *ngIf="!isCtrl.isClickEditAddress">上傳門牌</button>
+          <button class="btn btn-danger" type="submit" (click)="ensureAddress()" *ngIf="isCtrl.isClickEditAddress">取消</button>
+        </div>
+      </div>
+      <div class="col-12 px-0">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <!-- <select class="custom-select" [(ngModel)]="chooseArea" [disabled]='isCtrl.isClickEditAddress'>
+              <option [value]="area" *ngFor="let area of boxTWarea">{{ area }}</option>
+            </select> -->
+            <!-- <select class="custom-select" disabled>
+              <option [value]="this.authInfo.Address_Cty" >{{ this.authInfo.Address_Cty }}</option>
+            </select> -->
+            <label class="input-group-text" for="inputGroupSelect01">{{ this.authInfo.Address_Cty }}</label>
+          </div>
+          <input
+            #addressArea
+            type="text"
+            class="form-control"
+            [disabled]='isCtrl.isClickEditAddress'
+            [(ngModel)]="twAddress"
+            (input)="i_text_valid($event, '1')"
+            (focus)="addinputFocus()"
+            (blur)="isCtrl.exText1 = false">
+        </div>
+        <div *ngIf="isValid.twAddr" class="row">
+          <div class="col-4 p-0"></div>
+          <div class="col py-0 text-danger">text only</div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="text-danger" *ngIf="isCtrl.exText1" #exText1>
+        <p class="mb-1">Please input a Taiwan address in the field or upload a photo of house number plate including a Taiwan address</p>
+      </div>
+
+      <div #exText1Bottom></div>
+
+      <div class="col-12 text-danger text-center" *ngIf="isCtrl.isClickEditAddress">
+        <h4 class="mb-1 mt-2">Upload House Number Plate</h4>
+        <!-- <p class="mb-0">Only the areas of {{ areaText() }} are admited！</p> -->
+        <p class="mb-0">Only the areas of {{ this.authInfo.Address_Cty }} are admited！</p>
+      </div>
+      <div
+        class="container mb-3"
+        style="width: 100%;"
+        *ngIf="isCtrl.isClickEditAddress"
+        (click)="uploadNumPlate()">
+          <img src="assets/imgs/upload.png" alt="">
+      </div>
+
+    </div>
+
+
+
+    <!-- <div class="mb-3 row">
+      <div class="col-5 px-0">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <label class="custom-text-center">國外收件地址</label>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 px-0">
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="foreignAddress"
+          (input)="i_text_valid($event, '2')">
+      </div>
+      <div *ngIf="isValid.foAddr" class="py-0 text-danger">text only</div>
+    </div> -->
+
+    <!-- <div class="mb-3 row">
+      <div class="col-4 px-0">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <label class="custom-text-center">國外連絡電話</label>
+          </div>
+        </div>
+      </div>
+      <div class="col-8 px-0">
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="foreignPhone"
+          (input)="i_num_valid($event, '3')">
+      </div>
+      <ng-container *ngIf="isValid.foPhone">
+        <div class="col-4 p-0"></div>
+        <div class="col-8 p-0 text-danger">number only</div>
+      </ng-container>
+    </div> -->
+
+    <div class="row my-3">
+      <div class="col-4 px-0">
+        <div class="mb-3 input-group">
+          <div class="input-group-prepend">
+            <label class="custom-text-center">指定收件時間</label>
+          </div>
+        </div>
+      </div>
+      <div class="col-8 cus-radio">
+        <div class="form-check">
+          <input class="form-check-input mr-2" type="radio" name="receivingTime" value="morning" [(ngModel)]="receivingTime">
+          <label class="form-check-label pl-3">
+            08:00 - 12:00
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input mr-2" type="radio"  name="receivingTime" value="afternoon" [(ngModel)]="receivingTime">
+          <label class="form-check-label pl-3">
+            13:00 - 15:00
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input mr-2" type="radio" name="receivingTime" value="night" [(ngModel)]="receivingTime">
+          <label class="form-check-label pl-3">
+            18:00 - 20:00
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mb-1">
+      <div class="col-4 px-0">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <label class="custom-text-center">付款方式</label>
+            <!-- <button id="ex2" [ngClass]="{'btn': true, 'ex-mark': true, 'text-primary':!isCtrl.exText2, 'text-danger': isCtrl.exText2}" type="submit" (click)="exClick2()">[ ! ]</button> -->
+          </div>
+        </div>
+      </div>
+      <div class="col-8 cus-radio">
+        <div class="form-check">
+          <input
+            class="form-check-input mr-2"
+            type="radio"
+            name="payMethod"
+            value="cash_on_delivery"
+            [(ngModel)]="payMethod"
+            (foucs)="isCtrl.exText2 = true"
+            (blur)="isCtrl.exText2 = false">
+          <label class="form-check-label pl-3">
+            貨到付款
+          </label>
+        </div>
+        <div class="form-check">
+          <input
+            class="form-check-input mr-2"
+            type="radio"
+            name="payMethod"
+            value="code_payment"
+            [(ngModel)]="payMethod"
+            (foucs)="isCtrl.exText2 = true"
+            (blur)="isCtrl.exText2 = false">
+          <label class="form-check-label pl-3">
+            超商繳費
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="text-danger" *ngIf="isCtrl.exText2">
+        <p class="mb-1">
+          貨到付款：pay after the order arrived.
+        </p>
+        <p class="mb-1">
+          超商繳費：pay before the order sended.
+        </p>
+      </div>
+    </div>
+    <div class="row mt-3" *ngIf="isCtrl.choosePhoto">
+      <div class="mx-auto">
+        <img [src]="choosePhotoUrl"  class="" style="max-height: 17.5rem;" alt="" >
+      </div>
+    </div>
+
+
+  </div>
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <button ion-button block color="primary" icon-end (click)="submit()">
+      訂單送出
+      <ion-icon name="send"></ion-icon>
+    </button>
+  </ion-toolbar>
+</ion-footer>
